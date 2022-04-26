@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "outDir": "./build",
+        "target": "es5",
+        "jsx": "react" ,
+        "module": "es6",
+        "pretty": true ,
+        "noImplicitAny": false ,
+        "skipLibCheck": true ,
+        "allowUnreachableCode": false,
+        "traceResolution": false,
+        "allowSyntheticDefaultImports": true,
+        "sourceMap": true,
+        "moduleResolution": "node"
+    },
+    "exclude": [
+        "node_modules"
+    ]
+}
