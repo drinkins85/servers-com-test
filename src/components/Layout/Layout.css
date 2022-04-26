@@ -1,0 +1,9 @@
+.Layout {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+.Layout__menu {
+    background-color: #CCC;
+}
