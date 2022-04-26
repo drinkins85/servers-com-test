@@ -1,11 +1,8 @@
-const webpack = require('webpack');
 const path = require('path');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const API_PATH = 'api/';
-const ROOT_PATH = '';
 const LOCAL_BACKEND_SERVER = 'http://localhost:7777';
 const HYBRID_DEV_SERVER = 'https://real-backend-server.ru';
 
@@ -29,10 +26,6 @@ module.exports = (env) => {
         plugins: [
             new MiniCssExtractPlugin({
                 filename: 'bundle.css',
-            }),
-            new webpack.DefinePlugin({
-                API_PATH: JSON.stringify(API_PATH),
-                ROOT_PATH: JSON.stringify(ROOT_PATH),
             }),
         ],
         devServer: {
