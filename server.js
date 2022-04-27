@@ -20,5 +20,6 @@ const messages = [
 module.exports = () => {
     return {
         messages,
+        message: messages[0],
     };
 };
