@@ -11,7 +11,7 @@ const authors = [
 const messages = [
     {
         id: 1,
-        date: '2001-01-01',
+        date: '2022-04-06',
         text: 'lorem ipsum',
         author: authors[0],
     },

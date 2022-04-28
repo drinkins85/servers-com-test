@@ -6,3 +6,10 @@ export interface IMessage {
     text: string;
     author: IAuthor;
 }
+
+export interface IFilterParams {
+    dateFrom?: string;
+    dateTo?: string;
+    author?: string;
+    text?: string;
+}
