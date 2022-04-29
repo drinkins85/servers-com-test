@@ -6,6 +6,7 @@ import { IAuthorsState } from '../../reducers/authors';
 import { getAuthorDetail } from '../../actions/authors/authors';
 import { IMessagesState } from '../../reducers/messages';
 import { getMessages } from '../../actions/messages/messages';
+import Message from '../../components/Message/Message';
 
 const PageAuthor: React.FC = () => {
     const dispatch = useDispatch();
@@ -52,8 +53,7 @@ const PageAuthor: React.FC = () => {
 
                                     return (
                                         <div key={msgId}>
-                                            <div>{message.date}</div>
-                                            <div>{message.text}</div>
+                                            <Message text={message.text} date={message.date} />
                                         </div>
                                     );
                                 })}

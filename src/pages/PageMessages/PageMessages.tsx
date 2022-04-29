@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { getMessages, addMessage } from '../../actions/messages/messages';
 import { getAuthors } from '../../actions/authors/authors';
-import { IMessage } from '../../interfaces/message';
 import { IMainState } from '../../reducers';
 import { IMessagesState } from '../../reducers/messages';
 import Button from '../../components/Button/Button';
 import MessageAddForm from '../../components/MessageAddForm/MessageAddForm';
 import Modal from '../../components/Modal/Modal';
 import Filters from '../../components/Filters/Filters';
+import Message from '../../components/Message/Message';
 import { dateToString } from '../../helpers';
 import { IFilterParams } from '../../interfaces/message';
 import { IAuthorsState } from '../../reducers/authors';
@@ -110,13 +110,7 @@ const PageMessages: React.FC = () => {
 
                     return (
                         <div key={messageId}>
-                            <div>{date}</div>
-                            <div>{text}</div>
-                            <div>
-                                <Link to={`/authors/${id}`}>
-                                    {author?.firstName} {author?.lastName}
-                                </Link>
-                            </div>
+                            <Message text={text} date={date} author={author} />
                         </div>
                     );
                 })}

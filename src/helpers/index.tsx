@@ -12,6 +12,16 @@ export function dateToString(date: Date): string {
     return `${date.getFullYear()}-${addLeadZero(date.getMonth() + 1)}-${addLeadZero(date.getDate())}`;
 }
 
+export const printDate = (date: string) => {
+    const dt = new Date(Date.parse(date));
+
+    if (!dt) {
+        return;
+    }
+
+    return `${dt.getDate()}/${addLeadZero(dt.getMonth() + 1)}/${dt.getFullYear()}`;
+};
+
 export const normalizeData = (data) => {
     const ids = {};
     const list = [];
