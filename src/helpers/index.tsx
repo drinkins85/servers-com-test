@@ -11,3 +11,24 @@ export function dateToString(date: Date): string {
     }
     return `${date.getFullYear()}-${addLeadZero(date.getMonth() + 1)}-${addLeadZero(date.getDate())}`;
 }
+
+export const normalizeData = (data) => {
+    const ids = {};
+    const list = [];
+
+    for (let i = 0; i < data.length; i++) {
+        if (typeof data[i].id === 'undefined') {
+            continue;
+        }
+
+        const dataItem = data[i];
+
+        ids[dataItem.id] = dataItem;
+        list.push(dataItem.id);
+    }
+
+    return {
+        ids: ids,
+        list: list,
+    };
+};

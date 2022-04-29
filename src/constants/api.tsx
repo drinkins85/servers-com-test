@@ -5,4 +5,8 @@ export const API = {
         LIST: `${ROOT_PATH}/messages`,
         ADD: `${ROOT_PATH}/message`,
     },
+    AUTHORS: {
+        LIST: `${ROOT_PATH}/authors`,
+        DETAIL: `${ROOT_PATH}/author`,
+    },
 };

@@ -27,6 +27,11 @@ const Filters: React.FC<IFiltersProps> = (props) => {
     };
 
     const handleResetFilter = () => {
+        setFilterDateFrom('');
+        setFilterDateTo('');
+        setFilterAuthor('');
+        setFilterText('');
+
         onApply({});
     };
 

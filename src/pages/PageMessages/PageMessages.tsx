@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getMessages, addMessage } from '../../actions/messages/messages';
+import { getAuthors } from '../../actions/authors/authors';
 import { IMessage } from '../../interfaces/message';
 import { IMainState } from '../../reducers';
 import { IMessagesState } from '../../reducers/messages';
@@ -11,14 +12,18 @@ import Modal from '../../components/Modal/Modal';
 import Filters from '../../components/Filters/Filters';
 import { dateToString } from '../../helpers';
 import { IFilterParams } from '../../interfaces/message';
+import { IAuthorsState } from '../../reducers/authors';
+import { Link } from 'react-router-dom';
 
-// ID авторизованного пользователя
+// ID авторизованного пользователя(автора)
 const authorId = 1;
 
-const getMessagesByFilter = (messages: IMessage[], filters: IFilterParams) => {
+const getMessagesByFilter = (msgList, msgById, authorById, filters: IFilterParams) => {
     const { dateFrom, dateTo, author, text } = filters;
 
-    return messages.filter((message) => {
+    return msgList.filter((messageId) => {
+        const message = msgById[messageId];
+
         const date = new Date(Date.parse(message.date));
 
         if (dateFrom && date <= new Date(Date.parse(dateFrom))) {
@@ -29,9 +34,10 @@ const getMessagesByFilter = (messages: IMessage[], filters: IFilterParams) => {
             return false;
         }
 
-        if (author) {
-            const authorName = `${message.author.firstName.toLowerCase()} ${message.author.lastName.toLowerCase()}`;
-            const authorNameReversed = `${message.author.lastName.toLowerCase()} ${message.author.firstName.toLowerCase()}`;
+        if (author && authorById[message.authorId]) {
+            const authorData = authorById[message.authorId];
+            const authorName = `${authorData.firstName.toLowerCase()} ${authorData.lastName.toLowerCase()}`;
+            const authorNameReversed = `${authorData.lastName.toLowerCase()} ${authorData.firstName.toLowerCase()}`;
 
             const substring = author.toLowerCase().trim();
             if (authorName.indexOf(substring) === -1 && authorNameReversed.indexOf(substring) === -1) {
@@ -50,7 +56,13 @@ const getMessagesByFilter = (messages: IMessage[], filters: IFilterParams) => {
 const PageMessages: React.FC = () => {
     const dispatch = useDispatch();
     const messagesState = useSelector<IMainState, IMessagesState>((state) => state.messages);
-    const { isLoading, messages } = messagesState;
+    const msgList = messagesState.list;
+    const msgById = messagesState.ids;
+
+    const authorsState = useSelector<IMainState, IAuthorsState>((state) => state.authors);
+    const authorById = authorsState.ids;
+    const isLoading = authorsState.isLoading || messagesState.isLoading;
+
     const [addFormOpen, setAddFormOpen] = useState(false);
 
     const [filters, setFilters] = useState({});
@@ -59,7 +71,7 @@ const PageMessages: React.FC = () => {
         setAddFormOpen(true);
     };
 
-    const filteredMessages = getMessagesByFilter(messages, filters);
+    const filteredMessages = getMessagesByFilter(msgList, msgById, authorById, filters);
 
     const handleSubmitAddForm = (text) => {
         const currentDate = new Date();
@@ -78,6 +90,10 @@ const PageMessages: React.FC = () => {
 
     useEffect(() => {
         dispatch(getMessages());
+
+        if (authorsState.list.length === 0) {
+            dispatch(getAuthors());
+        }
     }, []);
 
     return (
@@ -88,14 +104,18 @@ const PageMessages: React.FC = () => {
             {isLoading && <div>loading...</div>}
             {!isLoading &&
                 filteredMessages &&
-                filteredMessages.map((message) => {
-                    const { date, text, author, id } = message;
+                filteredMessages.map((messageId) => {
+                    const { date, text, authorId, id } = msgById[messageId];
+                    const author = authorById[authorId];
+
                     return (
-                        <div key={id}>
+                        <div key={messageId}>
                             <div>{date}</div>
                             <div>{text}</div>
                             <div>
-                                {author.firstName} {author.lastName}
+                                <Link to={`/authors/${id}`}>
+                                    {author?.firstName} {author?.lastName}
+                                </Link>
                             </div>
                         </div>
                     );

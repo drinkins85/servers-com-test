@@ -1,22 +1,17 @@
 import { IMessage } from '../interfaces/message';
 import { GET_MESSAGES, ADD_MESSAGE, AddMessageActions, GetMessagesActions } from '../actions/messages/types';
-
-const mockAuthor = {
-    id: 1,
-    firstName: 'Andrew',
-    lastName: 'Akhryapov',
-    email: 'mail@gmail.com',
-    phone: '+712345678',
-};
+import { normalizeData } from '../helpers';
 
 export interface IMessagesState {
     isLoading: boolean;
-    messages: IMessage[];
+    list: number[];
+    ids: { [key: string]: IMessage };
 }
 
 const initialState: IMessagesState = {
     isLoading: false,
-    messages: [],
+    ids: {},
+    list: [],
 };
 
 const messages = (
@@ -33,28 +28,32 @@ const messages = (
         case GET_MESSAGES.SUCCESS: {
             return {
                 isLoading: false,
-                messages: action.data,
+                ...normalizeData(action.data),
             };
         }
         case GET_MESSAGES.FAILED: {
             return {
+                ...state,
                 isLoading: false,
-                messages: [],
             };
         }
         case ADD_MESSAGE.SUCCESS: {
             // фейковый ответ от сервера
             // json-server возвращает то же, что и отправляли, добавляем id и автора
             const mockResponseFromPostMethod = {
-                id: state.messages.length + 1,
+                id: state.list.length + 1,
                 date: action.data.date,
                 text: action.data.text,
-                author: mockAuthor,
+                authorId: action.data.authorId,
             };
 
             return {
                 ...state,
-                messages: [...state.messages, mockResponseFromPostMethod],
+                ids: {
+                    ...state.ids,
+                    [mockResponseFromPostMethod.id]: mockResponseFromPostMethod,
+                },
+                list: [...state.list, mockResponseFromPostMethod.id],
             };
         }
         default:

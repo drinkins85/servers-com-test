@@ -1,4 +1,6 @@
 {
   "*/messages": "/messages",
-  "*/message": "/message"
+  "*/message": "/message",
+  "*/authors": "/authors",
+  "*/author/:id": "/author/:id"
 }
