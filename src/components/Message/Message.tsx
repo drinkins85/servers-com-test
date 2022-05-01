@@ -27,4 +27,4 @@ const Message: React.FC<IMessageProps> = (props) => {
     );
 };
 
-export default Message;
+export default React.memo(Message);

@@ -18,4 +18,4 @@ const TopMenu: React.FC = () => {
     );
 };
 
-export default TopMenu;
+export default React.memo(TopMenu);

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getMessages, addMessage } from '../../actions/messages/messages';
@@ -86,9 +86,12 @@ const PageMessages: React.FC = () => {
         setAddFormOpen(false);
     };
 
-    const handleFiltersApply = (filters) => {
-        setFilters(filters);
-    };
+    const handleFiltersApply = useCallback(
+        (filters) => {
+            setFilters(filters);
+        },
+        [filters],
+    );
 
     useEffect(() => {
         dispatch(getMessages());
