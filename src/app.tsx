@@ -9,6 +9,8 @@ import PageAuthors from './pages/PageAuthors/PageAuthors';
 import PageAuthor from './pages/PageAuthor/PageAuthor';
 import { store } from './store/configureStore';
 
+import './app.css';
+
 ReactDOM.render(
     <Provider store={store}>
         <HashRouter>

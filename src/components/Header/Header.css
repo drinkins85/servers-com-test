@@ -1,0 +1,22 @@
+.Header {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+}
+
+.Header_type_h1 {
+    font-size: 32px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.Header_type_h2 {
+    font-size: 28px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.Header_type_h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}

@@ -1,9 +1,20 @@
 import React from 'react';
 
-const Button: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement>> = (props) => {
-    const { children, ...buttonProps } = props;
+import './Button.css';
 
-    return <button {...buttonProps}>{children}</button>;
+interface IButtonProps {
+    color?: 'primary' | 'secondary' | 'default';
+    fullWidth?: boolean;
+}
+
+const Button: React.FC<IButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>> = (props) => {
+    const { color = 'default', fullWidth = false, children, ...buttonProps } = props;
+
+    return (
+        <button className={`Button Button_color_${color} ${fullWidth ? 'Button_fullWidth' : ''}`} {...buttonProps}>
+            {children}
+        </button>
+    );
 };
 
 export default Button;

@@ -15,9 +15,9 @@ const Message: React.FC<IMessageProps> = (props) => {
     const { text, date, author } = props;
 
     return (
-        <div className={'message'}>
-            <div>{printDate(date)}</div>
-            <div>{text}</div>
+        <div className={'Message'}>
+            <div className={'Message__date'}>{printDate(date)}</div>
+            <div className={'Message__text'}>{text}</div>
             {author && (
                 <Link to={`/authors/${author.id}`}>
                     {author?.firstName} {author?.lastName}

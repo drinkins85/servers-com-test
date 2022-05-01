@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import Button from '../Button/Button';
 import { IFilterParams } from '../../interfaces/message';
 
+import './Filters.css';
+
 interface IFiltersProps {
     filters: IFilterParams;
     onApply: (filter: IFilterParams) => unknown;
@@ -36,37 +38,58 @@ const Filters: React.FC<IFiltersProps> = (props) => {
     };
 
     return (
-        <div>
-            <input
-                type={'date'}
-                value={filterDateFrom}
-                onChange={(e) => {
-                    setFilterDateFrom(() => e.target.value);
-                }}
-            />
-            <input
-                type={'date'}
-                value={filterDateTo}
-                onChange={(e) => {
-                    setFilterDateTo(() => e.target.value);
-                }}
-            />
-            <input
-                type={'text'}
-                value={filterAuthor}
-                onChange={(e) => {
-                    setFilterAuthor(() => e.target.value);
-                }}
-            />
-            <input
-                type={'text'}
-                value={filterText}
-                onChange={(e) => {
-                    setFilterText(() => e.target.value);
-                }}
-            />
-            <Button onClick={handleApplyFilter}>Применить</Button>
-            <Button onClick={handleResetFilter}>Сбросить</Button>
+        <div className={'Filters'}>
+            <div className={'Filters__section'}>
+                <div className={'Filters__title'}>Даты публикации с</div>
+                <input
+                    className={'Filters__input Filters__input_date'}
+                    type={'date'}
+                    value={filterDateFrom}
+                    onChange={(e) => {
+                        setFilterDateFrom(() => e.target.value);
+                    }}
+                />
+            </div>
+            <div className={'Filters__section'}>
+                <div className={'Filters__title'}>Даты публикации до</div>
+                <input
+                    className={'Filters__input Filters__input_date'}
+                    type={'date'}
+                    value={filterDateTo}
+                    onChange={(e) => {
+                        setFilterDateTo(() => e.target.value);
+                    }}
+                />
+            </div>
+            <div className={'Filters__section'}>
+                <input
+                    className={'Filters__input'}
+                    type={'text'}
+                    value={filterAuthor}
+                    onChange={(e) => {
+                        setFilterAuthor(() => e.target.value);
+                    }}
+                    placeholder={'Имя автора'}
+                />
+            </div>
+            <div className={'Filters__section'}>
+                <input
+                    className={'Filters__input'}
+                    type={'text'}
+                    value={filterText}
+                    onChange={(e) => {
+                        setFilterText(() => e.target.value);
+                    }}
+                    placeholder={'Текст сообщения'}
+                />
+            </div>
+
+            <div className={'Filters__actions'}>
+                <Button color={'primary'} onClick={handleApplyFilter}>
+                    Применить
+                </Button>
+                <Button onClick={handleResetFilter}>Сбросить</Button>
+            </div>
         </div>
     );
 };

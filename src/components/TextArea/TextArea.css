@@ -1,0 +1,20 @@
+.TextArea {
+
+}
+
+.TextArea__input {
+    width: 100%;
+    min-height: 120px;
+    border: #6da4d5 1px solid;
+    border-radius: 8px;;
+}
+
+.TextArea__input:focus {
+    outline: #9dc4e7 2px solid;
+}
+
+.TextArea__counter {
+    font-size: 14px;
+    padding-top: 8px;
+    text-align: right;
+}

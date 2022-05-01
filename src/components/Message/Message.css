@@ -1,6 +1,21 @@
-.message {
+.Message {
     padding: 20px;
-    margin: 20px;
+    margin-bottom: 32px;
     border: 1px #CCC solid;
     border-radius: 8px;
+    position: relative;
+    background-color: white;
+}
+
+.Message__date {
+    position: absolute;
+    top: -12px;
+    left: 32px;
+    background-color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.Message__tet {
+    padding-bottom: 8px;
 }

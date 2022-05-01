@@ -10,10 +10,12 @@ import MessageAddForm from '../../components/MessageAddForm/MessageAddForm';
 import Modal from '../../components/Modal/Modal';
 import Filters from '../../components/Filters/Filters';
 import Message from '../../components/Message/Message';
+import Header from '../../components/Header/Header';
 import { dateToString } from '../../helpers';
 import { IFilterParams } from '../../interfaces/message';
 import { IAuthorsState } from '../../reducers/authors';
-import { Link } from 'react-router-dom';
+
+import './PageMessages.css';
 
 // ID авторизованного пользователя(автора)
 const authorId = 1;
@@ -97,23 +99,34 @@ const PageMessages: React.FC = () => {
     }, []);
 
     return (
-        <div>
-            <h1>Messages</h1>
-            <Button onClick={handleAddMessageClick}>Add message</Button>
-            <Filters filters={filters} onApply={handleFiltersApply} />
-            {isLoading && <div>loading...</div>}
-            {!isLoading &&
-                filteredMessages &&
-                filteredMessages.map((messageId) => {
-                    const { date, text, authorId, id } = msgById[messageId];
-                    const author = authorById[authorId];
+        <div className={'PageMessages'}>
+            <Header type={'h1'}>Сообщения</Header>
+            <div className={'PageMessages__container'}>
+                <div className={'PageMessages__content'}>
+                    {isLoading && <div>loading...</div>}
+                    {!isLoading &&
+                        filteredMessages &&
+                        filteredMessages.map((messageId) => {
+                            const { date, text, authorId, id } = msgById[messageId];
+                            const author = authorById[authorId];
 
-                    return (
-                        <div key={messageId}>
-                            <Message text={text} date={date} author={author} />
-                        </div>
-                    );
-                })}
+                            return (
+                                <div key={messageId}>
+                                    <Message text={text} date={date} author={author} />
+                                </div>
+                            );
+                        })}
+                </div>
+                <div className={'PageMessages__sidebar'}>
+                    <div className={'PageMessages__buttons'}>
+                        <Button color={'primary'} fullWidth onClick={handleAddMessageClick}>
+                            Добавить сообщение
+                        </Button>
+                    </div>
+                    <Filters filters={filters} onApply={handleFiltersApply} />
+                </div>
+            </div>
+
             <Modal open={addFormOpen} onClose={handleSubmitFormClose}>
                 <MessageAddForm onSubmit={handleSubmitAddForm} />
             </Modal>

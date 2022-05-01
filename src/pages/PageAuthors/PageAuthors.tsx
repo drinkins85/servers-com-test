@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom';
 import { getAuthors } from '../../actions/authors/authors';
 import { IMainState } from '../../reducers';
 import { IAuthorsState } from '../../reducers/authors';
+import Header from '../../components/Header/Header';
+
+import './PageAuthors.css';
 
 const PageAuthors: React.FC = () => {
     const dispatch = useDispatch();
@@ -18,15 +21,15 @@ const PageAuthors: React.FC = () => {
     }, []);
 
     return (
-        <div>
-            <h1>Authors</h1>
+        <div className={'PageAuthors'}>
+            <Header type={'h1'}>Авторы</Header>
             {isLoading && <div>loading..</div>}
             {!isLoading &&
                 list &&
                 list.map((authorId) => {
                     const { id, firstName, lastName } = ids[authorId];
                     return (
-                        <div key={id}>
+                        <div key={id} className={'PageAuthors__author'}>
                             <Link to={`/authors/${id}`}>
                                 {firstName} {lastName}
                             </Link>

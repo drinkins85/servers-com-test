@@ -7,6 +7,9 @@ import { getAuthorDetail } from '../../actions/authors/authors';
 import { IMessagesState } from '../../reducers/messages';
 import { getMessages } from '../../actions/messages/messages';
 import Message from '../../components/Message/Message';
+import Header from '../../components/Header/Header';
+
+import './PageAuthor.css';
 
 const PageAuthor: React.FC = () => {
     const dispatch = useDispatch();
@@ -32,31 +35,36 @@ const PageAuthor: React.FC = () => {
     }, []);
 
     return (
-        <div>
-            <h1>Author {authorId}</h1>
+        <div className={'PageAuthor'}>
             {isLoading && <div>loading...</div>}
             {!isLoading && author && (
                 <div>
-                    <div>
+                    <Header type={'h2'}>
                         {author?.firstName} {author.lastName}
-                    </div>
+                    </Header>
                     {author.detail && (
                         <div>
+                            {typeof author.detail.rating === 'number' && (
+                                <div className={'PageAuthor__rating'}>{author.detail.rating}</div>
+                            )}
                             <div>{author.detail.phone}</div>
                             <div>{author.detail.email}</div>
-                            {author.detail.msgIds.length > 0 &&
-                                author.detail.msgIds.map((msgId) => {
-                                    const message = msgById[msgId];
-                                    if (!message) {
-                                        return null;
-                                    }
+                            {author.detail.msgIds.length > 0 && (
+                                <div className={'PageAuthor__messages'}>
+                                    {author.detail.msgIds.map((msgId) => {
+                                        const message = msgById[msgId];
+                                        if (!message) {
+                                            return null;
+                                        }
 
-                                    return (
-                                        <div key={msgId}>
-                                            <Message text={message.text} date={message.date} />
-                                        </div>
-                                    );
-                                })}
+                                        return (
+                                            <div key={msgId}>
+                                                <Message text={message.text} date={message.date} />
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            )}
                         </div>
                     )}
                 </div>

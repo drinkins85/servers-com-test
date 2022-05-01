@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
+
+import './TextArea.css';
 
 interface ITextAreaProps {
     text: string;
@@ -15,9 +17,9 @@ const TextArea: React.FC<ITextAreaProps> = (props) => {
     };
 
     return (
-        <div>
-            <textarea value={text} onChange={handleTextChange} maxLength={maxLength} />
-            {showCounter && <div>{text.length}</div>}
+        <div className={'TextArea'}>
+            <textarea className={'TextArea__input'} value={text} onChange={handleTextChange} maxLength={maxLength} />
+            {showCounter && <div className={'TextArea__counter'}>Количество символов: {text.length}</div>}
         </div>
     );
 };

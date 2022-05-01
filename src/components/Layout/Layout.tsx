@@ -6,9 +6,7 @@ import './Layout.css';
 const Layout: React.FC = (props) => {
     return (
         <div className={'Layout'}>
-            <div className={'Layout__menu'}>
-                <TopMenu />
-            </div>
+            <TopMenu />
             <div className={'Layout__content'}>{props.children}</div>
         </div>
     );

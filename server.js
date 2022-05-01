@@ -20,6 +20,7 @@ const authorsDetail = [
             email: 'mail@gmail.com',
             phone: '+712345678',
             msgIds: [1],
+            rating: 3.2,
         },
     },
     {
@@ -30,6 +31,7 @@ const authorsDetail = [
             email: 'leo@gmail.com',
             phone: '+791827364',
             msgIds: [2],
+            rating: 4.8,
         },
     },
 ];

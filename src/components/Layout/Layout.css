@@ -2,8 +2,14 @@
     display: flex;
     width: 100%;
     flex-direction: column;
+    max-width: 1024px;
+    margin: auto;
+    min-height: 100vh;
 }
 
-.Layout__menu {
-    background-color: #CCC;
+.Layout__content {
+    box-sizing: border-box;
+    flex-grow: 10;
+    padding: 20px;
+    background-color: white;
 }
