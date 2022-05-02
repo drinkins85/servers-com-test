@@ -14,6 +14,5 @@ Session.vim
 *~
 src/**/*.js
 src/**/*.js.map
-dist
 npm-debug.log
 isu
