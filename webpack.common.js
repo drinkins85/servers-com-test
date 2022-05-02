@@ -47,7 +47,7 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'index-template.html'),
-            filename: path.resolve(__dirname, 'build/index.html'),
+            filename: path.resolve(__dirname, 'docs/index.html'),
             inject: true,
             minify: {
                 collapseWhitespace: true,

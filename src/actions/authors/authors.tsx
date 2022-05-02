@@ -14,6 +14,7 @@ export const getAuthorDetail = (id: number) => (dispatch: Dispatch<GetAuthorDeta
     dispatch({
         type: GET_AUTHOR_DETAIL.DEFAULT,
         url: `${API.AUTHORS.DETAIL}/${id}`,
+        id: id,
         method: 'get',
     });
 };

@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const path = require('path');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
@@ -12,6 +13,9 @@ module.exports = merge(common, {
         publicPath: 'dist/',
     },
     plugins: [
+        new webpack.DefinePlugin({
+            MOCK_API: true,
+        }),
         new MiniCssExtractPlugin({
             filename: '[name].[contenthash].css',
         }),

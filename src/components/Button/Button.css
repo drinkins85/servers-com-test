@@ -18,6 +18,10 @@
     box-shadow: rgba(0, 0, 0, .1) inset 100px 100px;
 }
 
+.Button:active {
+    transform: scale(.95);
+}
+
 .Button_color_primary {
     background-color: #2269a8;
     color: white;

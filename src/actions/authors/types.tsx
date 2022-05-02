@@ -38,6 +38,7 @@ export enum GET_AUTHOR_DETAIL {
 export type GetAuthorDetailType = {
     type: GET_AUTHOR_DETAIL.DEFAULT;
     url: string;
+    id: number;
     method: 'get';
 };
 

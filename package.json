@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --config webpack.prod.js --config webpack.prod.js",
+    "build": "webpack --config webpack.prod.js",
+    "build:mock": "webpack --config webpack.mock.js",
     "start": "webpack serve --hot --live-reload --config webpack.dev.js",
     "start:local": "webpack serve --env DEV_MODE=local --live-reload --hot --config webpack.dev.js",
+    "start:mock": "webpack serve --env MOCK_API=true --live-reload --hot --config webpack.dev.js",
     "server": "json-server server.js --routes routes.json --port 7777",
     "lint": "eslint --quiet '*/**/*.{js,ts,tsx}'",
     "lint:fix": "eslint --quiet --fix '*/**/*.{js,ts,tsx}'"

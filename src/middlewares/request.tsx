@@ -1,15 +1,23 @@
 import axios from 'axios';
+import getMockByAction from '../helpers/getMockByAction';
 
-const url = window.location.pathname;
-const rootPath = url.slice(0, url.indexOf('dashboard_front'));
+export const ROOT_URL = location.protocol + '//' + location.host;
 
-export const ROOT_URL = location.protocol + '//' + location.host + rootPath;
+declare const MOCK_API: boolean;
 
 export default (store) => (dispatch) => (action) => {
     const isRequestAction = action.url && action.method;
 
     if (!isRequestAction) {
         return dispatch(action);
+    }
+
+    if (MOCK_API) {
+        return dispatch({
+            type: action.type + '_SUCCESS',
+            data: getMockByAction(action),
+            prevAction: action,
+        });
     }
 
     let headers = {};

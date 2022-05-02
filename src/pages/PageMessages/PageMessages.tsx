@@ -18,7 +18,7 @@ import { IAuthorsState } from '../../reducers/authors';
 import './PageMessages.css';
 
 // ID авторизованного пользователя(автора)
-const authorId = 1;
+const authorId = 3;
 
 const getMessagesByFilter = (msgList, msgById, authorById, filters: IFilterParams) => {
     const { dateFrom, dateTo, author, text } = filters;

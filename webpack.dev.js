@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const path = require('path');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
@@ -24,6 +25,9 @@ module.exports = (env) => {
             publicPath: '/dist/',
         },
         plugins: [
+            new webpack.DefinePlugin({
+                MOCK_API: env.MOCK_API,
+            }),
             new MiniCssExtractPlugin({
                 filename: 'bundle.css',
             }),
