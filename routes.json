@@ -1,5 +1,5 @@
 {
-  "*/messages": "/messages",
+  "*/messages/?page=1": "/messages/",
   "*/message": "/message",
   "*/authors": "/authors",
   "*/author/:id": "/author/:id"

@@ -11,6 +11,9 @@ export type GetMessagesType = {
     type: GET_MESSAGES.DEFAULT;
     url: string;
     method: 'get';
+    query: {
+        page: number;
+    };
 };
 
 export type GetMessagesStart = {

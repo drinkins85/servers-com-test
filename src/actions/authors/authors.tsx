@@ -13,7 +13,7 @@ export const getAuthors = () => (dispatch: Dispatch<GetAuthorsActions>) => {
 export const getAuthorDetail = (id: number) => (dispatch: Dispatch<GetAuthorDetailActions>) => {
     dispatch({
         type: GET_AUTHOR_DETAIL.DEFAULT,
-        url: `${API.AUTHORS.DETAIL}/${id}`,
+        url: `${API.AUTHORS.DETAIL}${id}`,
         id: id,
         method: 'get',
     });

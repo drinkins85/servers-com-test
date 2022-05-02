@@ -20,6 +20,12 @@ import './PageMessages.css';
 // ID авторизованного пользователя(автора)
 const authorId = 3;
 
+// номер страницы. В дальнейшем можно добавить постраничную навигацию
+const pageNum = 1;
+
+// фильтровать данные нужно на сервере, и возфращать отфильтрованные результаты
+// такой вариант сложно замокать, поэтому сейчас фильтрация реализована на фронте
+
 const getMessagesByFilter = (msgList, msgById, authorById, filters: IFilterParams) => {
     const { dateFrom, dateTo, author, text } = filters;
 
@@ -94,7 +100,7 @@ const PageMessages: React.FC = () => {
     );
 
     useEffect(() => {
-        dispatch(getMessages());
+        dispatch(getMessages(pageNum));
 
         if (authorsState.list.length === 0) {
             dispatch(getAuthors());
